@@ -6,10 +6,10 @@
 
 class Node:
     """ A node for a doubly linked list. """
-    def __init__(self, val, nextNode=None, prevNode=None):
+    def __init__(self, val, next_node=None, prev_node=None):
         self.__val = val
-        self.__next = nextNode
-        self.__prev = prevNode
+        self.__next = next_node
+        self.__prev = prev_node
 
     @property
     def val(self):
@@ -24,8 +24,8 @@ class Node:
         return self.__next
 
     @next.setter
-    def next(self, next):
-        self.__next = next
+    def next(self, next_node):
+        self.__next = next_node
 
     @property
     def prev(self):
@@ -40,18 +40,51 @@ class DoublyLinkedList:
     """ A doubly linked list with insertion and retrieval only from the ends. """
     def __init__(self):
         self.__sentinel = Node(None)
+        self.__sentinel.next = self.__sentinel
+        self.__sentinel.prev = self.__sentinel
 
     @property
-    def head(self):
+    def sentinel(self):
         return self.__sentinel
 
     def append(self, val):
         """ Add a node to the end of the doubly linked list. O(1) """
-        self.__sentinel.prev = Node(val, self.__sentinel, self.__sentinel.prev)
+        new_node = Node(val, self.__sentinel, self.__sentinel.prev)
+
+        self.__sentinel.prev.next = new_node
+        self.__sentinel.prev = new_node
 
     def prepend(self, val):
         """ Add a node to the beginning of the doubly linked list. O(1) """
-        self.__sentinel.next = Node(val, self.__sentinel.next, self.__sentinel)
+        new_node = Node(val, self.__sentinel.next, self.__sentinel)
+
+        self.__sentinel.next.prev = new_node
+        self.__sentinel.next = new_node
+
+    def remove_first(self):
+        """ Removes and returns the value from the first node. """
+        val = self.sentinel.next.val
+        self.__sentinel.next = self.__sentinel.next.next
+
+        return val
+
+    def remove_last(self):
+        """ removes and returns the value from the last node. """
+        val = self.__sentinel.prev.val
+        self.__sentinel.prev.prev.next = self.__sentinel
+
+        return val
+
+    def __str__(self):
+        flat_dll = []
+        node = self.__sentinel.next
+
+        # Flatten the DLL
+        while node is not self.__sentinel:
+            flat_dll.append(node.val)
+            node = node.next
+
+        return "{}".format(flat_dll)
 
 
 if __name__ == "__main__":
