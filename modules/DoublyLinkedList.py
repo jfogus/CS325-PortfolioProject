@@ -64,6 +64,7 @@ class DoublyLinkedList:
     def remove_first(self):
         """ Removes and returns the value from the first node. """
         val = self.sentinel.next.val
+        self.__sentinel.next.next.prev = self.__sentinel
         self.__sentinel.next = self.__sentinel.next.next
 
         return val
@@ -72,6 +73,7 @@ class DoublyLinkedList:
         """ removes and returns the value from the last node. """
         val = self.__sentinel.prev.val
         self.__sentinel.prev.prev.next = self.__sentinel
+        self.__sentinel.prev = self.sentinel.prev.prev
 
         return val
 

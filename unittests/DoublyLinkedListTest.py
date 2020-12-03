@@ -101,6 +101,9 @@ class DoublyLinkedListTester(unittest.TestCase):
 
         self.assertEqual(dll.remove_first(), 5)
         self.assertEqual(dll.__str__(), "[7, 11]")
+        self.assertEqual(dll.remove_first(), 7)
+        self.assertEqual(dll.remove_first(), 11)
+        self.assertIsNone(dll.remove_first())
 
     def test_remove_last(self):
         """ Tests removing the last node in DLL. """
@@ -111,6 +114,9 @@ class DoublyLinkedListTester(unittest.TestCase):
 
         self.assertEqual(dll.remove_last(), 11)
         self.assertEqual(dll.__str__(), "[5, 7]")
+        self.assertEqual(dll.remove_last(), 7)
+        self.assertEqual(dll.remove_last(), 5)
+        self.assertIsNone(dll.remove_last())
 
 
 
