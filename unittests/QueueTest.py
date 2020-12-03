@@ -7,8 +7,30 @@ import unittest
 from Queue import Queue
 
 
-class QueueTester(unittest):
-    pass
+class QueueTester(unittest.TestCase):
+    def test_enqueue(self):
+        """ Tests enqueue values. """
+        queue = Queue()
+        queue.enqueue(5)
+        queue.enqueue(7)
+        queue.enqueue(11)
+
+        self.assertEqual(queue.__str__(), "{}".format([5, 7, 11]))
+
+    def test_dequeue(self):
+        """ Tests dequeueing values. """
+        queue = Queue()
+        queue.enqueue(5)
+        queue.enqueue(7)
+        queue.enqueue(11)
+
+        self.assertEqual(queue.dequeue(), 5)
+        self.assertEqual(queue.dequeue(), 7)
+
+        queue.enqueue(13)
+
+        self.assertEqual(queue.dequeue(), 11)
+        self.assertEqual(queue.dequeue(), 13)
 
 
 if __name__ == "__main__":
