@@ -18,6 +18,10 @@ class Queue:
         """ Removes and returns a value from the beginning of the stack. O(1) """
         return self.__queue.remove_first()
 
+    def length(self):
+        """ Returns the number of elements in the queue. O(n) """
+        return self.__queue.length()
+
     def __str__(self):
         return self.__queue.__str__()
 
