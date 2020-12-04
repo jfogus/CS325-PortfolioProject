@@ -53,7 +53,7 @@ class Graph:
         return len(self.__vertices) == self.get_len_connected(vertex)
 
     def get_len_connected(self, source):
-        """ Uses BFS from an arbitrary source vertex and returns the number
+        """ Uses BFS from a given source vertex and returns the number
             of nodes reachable from that source including itself as
             an integer. O(V + E) """
         vertices = self.__vertices - {source}
