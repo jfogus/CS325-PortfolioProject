@@ -23,7 +23,7 @@ class VertexTester(unittest.TestCase):
         """ Tests getting complete coordinates. """
         v = Vertex(7, 1)
 
-        self.assertTupleEqual(v.coords, (7, 1))
+        self.assertTupleEqual(v.coords(), (7, 1))
 
 
 if __name__ == "__main__":

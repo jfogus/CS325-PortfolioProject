@@ -20,7 +20,6 @@ class Vertex:
         """ Getter for the y coordinate. """
         return self.__y
 
-    @property
     def coords(self):
         """ Returns a tuple of the coordinates. """
         return self.__x, self.__y
