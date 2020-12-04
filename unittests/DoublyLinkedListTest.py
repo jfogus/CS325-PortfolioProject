@@ -118,6 +118,17 @@ class DoublyLinkedListTester(unittest.TestCase):
         self.assertEqual(dll.remove_last(), 5)
         self.assertIsNone(dll.remove_last())
 
+    def test_length(self):
+        """ Tests getting the length of DLL. """
+        dll = DoublyLinkedList()
+        dll.append(5)
+
+        self.assertEqual(dll.length(), 1)
+        dll.append(7)
+        self.assertEqual(dll.length(), 2)
+        dll.remove_first()
+        dll.remove_first()
+        self.assertEqual(dll.length(), 0)
 
 
 if __name__ == "__main__":

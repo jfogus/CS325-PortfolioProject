@@ -77,6 +77,17 @@ class DoublyLinkedList:
 
         return val
 
+    def length(self):
+        """ Returns the number of elements in the linked list. """
+        count = 0
+        node = self.__sentinel
+
+        while node.next is not self.__sentinel:
+            count += 1
+            node = node.next
+
+        return count
+
     def __str__(self):
         flat_dll = []
         node = self.__sentinel.next
