@@ -13,7 +13,7 @@ class CertificateTester(unittest.TestCase):
     def test_add_edge(self):
         """ Tests adding an edge to the certificate. """
         c = Certificate({
-            Vertex(3, 5): 4
+            (3, 5): 4
         })
 
         e = Edge(Vertex(3, 3), Vertex(3, 7))
@@ -44,7 +44,7 @@ class CertificateTester(unittest.TestCase):
     def test_remove_edge(self):
         """ Tests removing an edge from the certificate. """
         c = Certificate({
-            Vertex(3, 5): 4
+            (3, 5): 4
         })
 
         e = Edge(Vertex(3, 3), Vertex(3, 7))
@@ -61,7 +61,7 @@ class CertificateTester(unittest.TestCase):
     def test_validate_edge(self):
         """ Tests that an edge meets the condition that intersects it. """
         c = Certificate({
-            Vertex(3, 5): 4
+            (3, 5): 4
         })
 
         e = Edge(Vertex(3, 3), Vertex(3, 7))
@@ -81,9 +81,9 @@ class CertificateTester(unittest.TestCase):
     def test_get_graph(self):
         """ Tests that a graph can be made from disconnected edges. """
         c = Certificate({
-            Vertex(1, 0): 3,
-            Vertex(2, 1): 4,
-            Vertex(1, 3): 2
+            (1, 0): 3,
+            (2, 1): 4,
+            (1, 3): 2
         })
 
         e = Edge(Vertex(0, 0), Vertex(3, 0))
