@@ -19,9 +19,11 @@ class Certificate:
     def edges(self):
         return self.__edges
 
-    def add_edge(self, u, v):
+    def add_edge(self, u_coords, v_coords):
         """ Adds a valid edge to the set of edges in the certificate and returns
             True if added. Otherwise returns False. O(C) """
+        u = Vertex(u_coords[0], u_coords[1])
+        v = Vertex(v_coords[0], v_coords[1])
         edge = Edge(u, v)
 
         if self.validate_edge(edge):
@@ -31,11 +33,12 @@ class Certificate:
         return False
 
     def remove_edge(self, u, v):
-        """ Removes an edge from the set of edges in the certificate"""
-        try:
-            del self.__edges[u, v]
-        except KeyError:
-            return
+        """ Removes an edge from the set of edges in the certificate, given
+            coordinates for the edges vertices as tuples in the form (x, y). """
+        for key, edge in self.__edges.items():
+            if edge.u.x == u[0] and edge.u.y == u[1] and edge.v.x == v[0] and edge.v.y == v[1]:
+                del self.__edges[key]
+                return
 
     def validate_edge(self, edge):
         """ Confirms that an edge meets one of the conditions, returning True if
