@@ -16,30 +16,27 @@ class CertificateTester(unittest.TestCase):
             (3, 5): 4
         })
 
-        e = Edge(Vertex(3, 3), Vertex(3, 7))
-        f = Edge(Vertex(1, 5), Vertex(5, 5))
-        g = Edge(Vertex(2, 4), Vertex(4, 6))
-        h = Edge(Vertex(1, 9), Vertex(5, 9))
-        i = Edge(Vertex(3, 4), Vertex(3, 6))
-        j = Edge(Vertex(2, 5), Vertex(7, 5))
+        e = ((3, 3), (3, 7))
+        f = ((1, 5), (5, 5))
+        g = ((2, 4), (4, 6))
+        h = ((1, 9), (5, 9))
+        i = ((3, 4), (3, 6))
+        j = ((2, 5), (7, 5))
 
         # Valid horizontal edge
-        c.add_edge(e.u, e.v)
+        c.add_edge(e[0], e[1])
         # Valid vertical edge
-        c.add_edge(f.u, f.v)
+        c.add_edge(f[0], f[1])
         # Invalid diagonal edge
-        c.add_edge(g.u, g.v)
+        c.add_edge(g[0], g[1])
         # Invalid non-intersected edge
-        c.add_edge(h.u, h.v)
+        c.add_edge(h[0], h[1])
         # Invalid short length
-        c.add_edge(i.u, i.v)
+        c.add_edge(i[0], i[1])
         # Invalid long length
-        c.add_edge(j.u, j.v)
+        c.add_edge(j[0], j[1])
 
-        self.assertSetEqual(set(c.edges.keys()), {
-            (e.u, e.v),
-            (f.u, f.v)
-        })
+        self.assertEqual(len(set(c.edges.keys())), 2)
 
     def test_remove_edge(self):
         """ Tests removing an edge from the certificate. """
@@ -49,12 +46,12 @@ class CertificateTester(unittest.TestCase):
 
         e = Edge(Vertex(3, 3), Vertex(3, 7))
         f = Edge(Vertex(1, 5), Vertex(5, 5))
-        c.add_edge(e.u, e.v)
+        c.add_edge((3, 3), (3, 7))
 
         # Existent edge
-        c.remove_edge(e.u, e.v)
+        c.remove_edge((3, 3), (3, 7))
         # Nonexistent edge
-        c.remove_edge(f.u, f.v)
+        c.remove_edge((1, 5), (5, 5))
 
         self.assertEqual(len(c.edges), 0)
 
@@ -86,13 +83,13 @@ class CertificateTester(unittest.TestCase):
             (1, 3): 2
         })
 
-        e = Edge(Vertex(0, 0), Vertex(3, 0))
-        f = Edge(Vertex(2, 0), Vertex(2, 4))
-        g = Edge(Vertex(0, 3), Vertex(2, 3))
+        e = ((0, 0), (3, 0))
+        f = ((2, 0), (2, 4))
+        g = ((0, 3), (2, 3))
 
-        c.add_edge(e.u, e.v)
-        c.add_edge(f.u, f.v)
-        c.add_edge(g.u, g.v)
+        c.add_edge(e[0], e[1])
+        c.add_edge(f[0], f[1])
+        c.add_edge(g[0], g[1])
 
         graph = c.get_graph()
 
