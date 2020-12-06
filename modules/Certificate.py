@@ -4,17 +4,16 @@
 # Description:  Implements an certificate for the problem to be tested as a solution.
 
 from Edge import Edge
+from Vertex import Vertex
 from Graph import Graph
-from copy import deepcopy
 
 
 class Certificate:
-    """ Accepts a set of conditions in the form of {Vertex: integer}, where
-        the vertex corresponds to the coordinates of a condition and the
+    """ Accepts a set of conditions in the form of {(x, y): integer}, where
         integer is the requirement. Collects proposed edges for a solution. """
     def __init__(self, conditions):
         self.__edges = {}
-        self.__conditions = conditions
+        self.__conditions = {Vertex(coords[0], coords[1]): value for coords, value in conditions.items()}
 
     @property
     def edges(self):
